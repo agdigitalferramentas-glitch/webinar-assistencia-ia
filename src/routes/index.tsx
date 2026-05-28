@@ -212,7 +212,33 @@ function SqueezePage() {
                   <strong>imediato e gratuito</strong>
                 </p>
 
-                <div id="agform-como-usar-intelig-ncia-artificial-para-transformar-o-instagram-da-sua-assist-ncia-t-cnica-em-um-canal-de-clientes-1779800811194"></div>
+                {done ? (
+                  <div className="agform-success">
+                    {form?.thank_you_message || "Obrigado! Recebemos seu envio."}
+                  </div>
+                ) : (
+                  <form className="agform" onSubmit={handleSubmit} noValidate>
+                    {fields.map((f) => (
+                      <div key={f.id} className="agform-field">
+                        <input
+                          className="agform-input"
+                          type={inputTypeFor(f.field_type)}
+                          placeholder={f.placeholder || f.label}
+                          required={f.required}
+                          value={values[f.id] || ""}
+                          onChange={(e) =>
+                            setValues((v) => ({ ...v, [f.id]: e.target.value }))
+                          }
+                          aria-label={f.label}
+                        />
+                      </div>
+                    ))}
+                    {error && <div className="agform-error">{error}</div>}
+                    <button type="submit" className="agform-button" disabled={submitting || !form}>
+                      {submitting ? "Enviando..." : "Enviar"}
+                    </button>
+                  </form>
+                )}
 
                 <p className="form-privacy">
                   🔒 Seus dados estão protegidos. Sem spam.
