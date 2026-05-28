@@ -494,7 +494,7 @@ const css = `
   display: grid;
   grid-template-columns: 220px 1fr;
   gap: 28px;
-  align-items: center;
+  align-items: start;
   margin-top: 8px;
 }
 .squeeze .authority-photo {
