@@ -525,7 +525,7 @@ const css = `
 }
 
 @media (max-width: 900px) {
-  .squeeze .hero-grid { grid-template-columns: 1fr; }
+  .squeeze .hero-grid { grid-template-columns: 1fr; gap: 24px; }
 }
 
 @media (max-width: 540px) {
