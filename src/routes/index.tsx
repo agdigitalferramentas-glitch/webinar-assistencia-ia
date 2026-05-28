@@ -244,9 +244,21 @@ const css = `
 .squeeze .wrapper {
   position: relative;
   z-index: 1;
-  max-width: 760px;
+  max-width: 1140px;
   margin: 0 auto;
   padding: 60px 24px 80px;
+}
+
+.squeeze .hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.squeeze .hero-left {
+  display: flex;
+  flex-direction: column;
 }
 
 .squeeze .tag {
