@@ -223,6 +223,16 @@ const css = `
 }
 .squeeze .urgency-bar span { font-size: 16px; font-weight: 800; }
 @keyframes sq-pulse-bar { 0%,100%{opacity:1} 50%{opacity:.88} }
+.blink-circle {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  vertical-align: middle;
+  animation: blink-pulse 1.2s ease-in-out infinite;
+}
+@keyframes blink-pulse { 0%,100%{opacity:1; transform:scale(1)} 50%{opacity:.4; transform:scale(.85)} }
 
 .squeeze::before {
   content: '';
