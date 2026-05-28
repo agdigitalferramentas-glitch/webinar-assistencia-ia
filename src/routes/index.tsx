@@ -96,7 +96,7 @@ function SqueezePage() {
             </div>
 
             <div className="hero-right fade-up">
-              <form className="form-box" onSubmit={(e) => e.preventDefault()}>
+              <div className="form-box">
                 <p className="form-title">Quero assistir agora</p>
                 <p className="form-subtitle">
                   Preencha abaixo, o acesso é{" "}
@@ -108,7 +108,7 @@ function SqueezePage() {
                 <p className="form-privacy">
                   🔒 Seus dados estão protegidos. Sem spam.
                 </p>
-              </form>
+              </div>
             </div>
           </div>
 
