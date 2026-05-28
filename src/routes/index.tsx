@@ -51,7 +51,7 @@ function SqueezePage() {
       <style>{css}</style>
       <div className="squeeze">
         <div className="urgency-bar">
-          🔴 &nbsp;UMA TURMA ESTÁ COMEÇANDO EM&nbsp;
+          <span className="blink-circle" /> &nbsp;UMA TURMA ESTÁ COMEÇANDO EM&nbsp;
           <span id="countdown">{countdown}</span>
           &nbsp;— Cadastre-se e assista agora
         </div>
@@ -210,7 +210,7 @@ const css = `
 .squeeze *, .squeeze *::before, .squeeze *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 .squeeze .urgency-bar {
-  background: var(--orange);
+  background: #dc2626;
   color: #fff;
   text-align: center;
   padding: 10px 20px;
@@ -223,6 +223,16 @@ const css = `
 }
 .squeeze .urgency-bar span { font-size: 16px; font-weight: 800; }
 @keyframes sq-pulse-bar { 0%,100%{opacity:1} 50%{opacity:.88} }
+.blink-circle {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  vertical-align: middle;
+  animation: blink-pulse 1.2s ease-in-out infinite;
+}
+@keyframes blink-pulse { 0%,100%{opacity:1; transform:scale(1)} 50%{opacity:.4; transform:scale(.85)} }
 
 .squeeze::before {
   content: '';
