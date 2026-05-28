@@ -1,29 +1,487 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Webinário Gratuito — Alan Terra" },
+      {
+        name: "description",
+        content:
+          "Aula gratuita: como transformar o Instagram da sua assistência técnica em um canal de clientes com IA especializada.",
+      },
+      { property: "og:title", content: "Webinário Gratuito — Alan Terra" },
+      {
+        property: "og:description",
+        content:
+          "Descubra o método usado por assistências técnicas para gerar orçamentos com consistência.",
+      },
+      { property: "og:type", content: "website" },
+    ],
+    links: [
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap",
+      },
+      { rel: "canonical", href: "/" },
     ],
   }),
-  component: Index,
+  component: SqueezePage,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+const pad = (n: number) => String(n).padStart(2, "0");
+
+function SqueezePage() {
+  const [seconds, setSeconds] = useState(5 * 60);
+
+  useEffect(() => {
+    if (seconds <= 0) return;
+    const t = setTimeout(() => setSeconds((s) => s - 1), 1000);
+    return () => clearTimeout(t);
+  }, [seconds]);
+
+  const countdown = `${pad(Math.floor(seconds / 60))}:${pad(seconds % 60)}`;
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+  };
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <style>{css}</style>
+      <div className="squeeze">
+        <div className="urgency-bar">
+          🔴 &nbsp;UMA TURMA ESTÁ COMEÇANDO EM&nbsp;
+          <span id="countdown">{countdown}</span>
+          &nbsp;— Cadastre-se e assista agora
+        </div>
+
+        <div className="glow-blob" />
+
+        <div className="wrapper">
+          <div className="fade-up">
+            <div className="tag">Aula gratuita — Assistências Técnicas</div>
+          </div>
+
+          <div className="fade-up">
+            <h1>
+              Como transformar o Instagram da sua assistência em{" "}
+              <em>um canal de clientes</em>
+            </h1>
+          </div>
+
+          <div className="fade-up">
+            <p className="subheadline">
+              Descubra o método usado por assistências técnicas para sair do
+              improviso e <strong>gerar orçamentos com consistência</strong> —
+              usando inteligência artificial treinada para o seu nicho.
+            </p>
+          </div>
+
+          <div className="fade-up">
+            <div className="divider" />
+            <ul className="bullets">
+              <li>
+                <span>
+                  <strong>Por que seus posts não geram clientes</strong> — e o
+                  que fazer diferente a partir de hoje
+                </span>
+              </li>
+              <li>
+                <span>
+                  <strong>O sistema de conteúdo que converte</strong> atenção em
+                  orçamento, mesmo sem equipe de marketing
+                </span>
+              </li>
+              <li>
+                <span>
+                  <strong>Como a IA especializada</strong> entrega em minutos o
+                  que levaria dias para produzir sozinho
+                </span>
+              </li>
+              <li>
+                <span>
+                  <strong>A comparação ao vivo</strong> entre IA genérica e o
+                  agente treinado para assistências — você vai ver a diferença
+                  na tela
+                </span>
+              </li>
+              <li>
+                <span>
+                  <strong>O plano para sair do improviso</strong> e publicar com
+                  direção comercial a partir desta semana
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="fade-up">
+            <form className="form-box" onSubmit={handleSubmit}>
+              <p className="form-title">Quero assistir agora</p>
+              <p className="form-subtitle">
+                Preencha abaixo — o acesso é{" "}
+                <strong>imediato e gratuito</strong>
+              </p>
+
+              <div className="form-group">
+                <label>Seu nome</label>
+                <input type="text" placeholder="Como prefere ser chamado?" />
+              </div>
+              <div className="form-group">
+                <label>Seu melhor e-mail</label>
+                <input type="email" placeholder="exemplo@email.com" />
+              </div>
+
+              <button type="submit" className="btn-submit">
+                ACESSAR A AULA GRATUITA <span className="arrow">→</span>
+              </button>
+
+              <p className="form-privacy">
+                🔒 Seus dados estão protegidos. Sem spam.
+              </p>
+            </form>
+          </div>
+
+          <div className="fade-up for-whom">
+            <p className="section-label">Esta aula é para você que...</p>
+            <div className="whom-grid">
+              <div className="whom-item">
+                Tem assistência técnica e quer vender mais pelo digital
+              </div>
+              <div className="whom-item">
+                Posta nas redes, mas não vê resultado em orçamentos
+              </div>
+              <div className="whom-item">
+                Quer parar de depender só de indicação
+              </div>
+              <div className="whom-item">
+                Já tentou ChatGPT e achou o resultado genérico demais
+              </div>
+              <div className="whom-item">
+                Gerencia ou faz o social media de uma assistência
+              </div>
+              <div className="whom-item">
+                Quer um sistema — não mais ideias soltas
+              </div>
+            </div>
+          </div>
+
+          <div className="fade-up authority">
+            <p>
+              <strong>Alan Terra</strong> é especialista em marketing para
+              assistências técnicas e criador do Agente de IA para Redes Sociais
+              — desenvolvido exclusivamente para quem conserta e quer vender
+              mais. Nesta aula, ele mostra na prática como transformar presença
+              em clientes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
+
+const css = `
+.squeeze {
+  --black: #0a0a0a;
+  --white: #f5f2ec;
+  --orange: #e8500a;
+  --orange-dark: #c43e00;
+  --orange-glow: rgba(232, 80, 10, 0.18);
+  --gray: #1c1c1c;
+  --muted: #8a8a8a;
+  --border: rgba(255,255,255,0.07);
+  background-color: var(--black);
+  color: var(--white);
+  font-family: 'Manrope', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+.squeeze *, .squeeze *::before, .squeeze *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+.squeeze .urgency-bar {
+  background: var(--orange);
+  color: #fff;
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  position: relative;
+  z-index: 100;
+  animation: sq-pulse-bar 2s ease-in-out infinite;
+}
+.squeeze .urgency-bar span { font-size: 16px; font-weight: 800; }
+@keyframes sq-pulse-bar { 0%,100%{opacity:1} 50%{opacity:.88} }
+
+.squeeze::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+.squeeze .glow-blob {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--orange-glow) 0%, transparent 70%);
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.squeeze .wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 60px 24px 80px;
+}
+
+.squeeze .tag {
+  display: inline-block;
+  background: var(--orange-glow);
+  border: 1px solid var(--orange);
+  color: var(--orange);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 2px;
+  margin-bottom: 28px;
+}
+
+.squeeze h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(46px, 8vw, 82px);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  margin-bottom: 10px;
+  color: var(--white);
+}
+.squeeze h1 em { font-style: normal; color: var(--orange); }
+
+.squeeze .subheadline {
+  font-size: clamp(16px, 2.2vw, 19px);
+  font-weight: 500;
+  color: #b8b3aa;
+  line-height: 1.6;
+  margin-bottom: 44px;
+  max-width: 640px;
+}
+.squeeze .subheadline strong { color: var(--white); font-weight: 700; }
+
+.squeeze .divider {
+  width: 48px;
+  height: 3px;
+  background: var(--orange);
+  margin-bottom: 36px;
+  border-radius: 2px;
+}
+
+.squeeze .bullets {
+  list-style: none;
+  margin-bottom: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.squeeze .bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #ccc8c0;
+  line-height: 1.55;
+}
+.squeeze .bullets li::before {
+  content: '';
+  display: block;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  background: var(--orange);
+  clip-path: polygon(0 50%, 38% 0, 100% 0, 100% 100%, 38% 100%);
+  opacity: 0.9;
+}
+.squeeze .bullets strong { color: var(--white); }
+
+.squeeze .form-box {
+  background: var(--gray);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--orange);
+  border-radius: 4px;
+  padding: 40px 36px;
+  position: relative;
+  overflow: hidden;
+}
+.squeeze .form-box::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top center, rgba(232,80,10,0.06), transparent 70%);
+  pointer-events: none;
+}
+
+.squeeze .form-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.squeeze .form-subtitle {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 28px;
+  font-weight: 500;
+}
+.squeeze .form-subtitle strong { color: var(--orange); }
+
+.squeeze .form-group { margin-bottom: 14px; }
+.squeeze .form-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.squeeze .form-group input {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 3px;
+  padding: 14px 16px;
+  font-size: 15px;
+  font-family: 'Manrope', sans-serif;
+  color: var(--white);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.squeeze .form-group input::placeholder { color: #555; }
+.squeeze .form-group input:focus { border-color: var(--orange); }
+
+.squeeze .btn-submit {
+  width: 100%;
+  background: var(--orange);
+  color: #fff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  border: none;
+  border-radius: 3px;
+  padding: 18px 24px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s, transform 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+.squeeze .btn-submit:hover { background: var(--orange-dark); transform: translateY(-1px); }
+.squeeze .btn-submit:active { transform: translateY(0); }
+.squeeze .btn-submit .arrow { display: inline-block; margin-left: 6px; transition: transform 0.2s; }
+.squeeze .btn-submit:hover .arrow { transform: translateX(4px); }
+
+.squeeze .form-privacy {
+  text-align: center;
+  font-size: 11px;
+  color: #555;
+  margin-top: 14px;
+  font-weight: 500;
+}
+.squeeze .form-privacy a { color: #777; text-decoration: none; }
+
+.squeeze .for-whom {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+}
+.squeeze .section-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 20px;
+}
+.squeeze .whom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.squeeze .whom-item {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 16px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #c8c2b8;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.squeeze .whom-item::before {
+  content: '→';
+  color: var(--orange);
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.squeeze .authority {
+  margin-top: 48px;
+  padding: 24px 28px;
+  background: rgba(232,80,10,0.06);
+  border-left: 3px solid var(--orange);
+  border-radius: 2px;
+}
+.squeeze .authority p {
+  font-size: 14px;
+  font-weight: 600;
+  color: #b0a99f;
+  line-height: 1.65;
+}
+.squeeze .authority p strong { color: var(--white); }
+
+.squeeze #countdown {
+  font-size: 16px;
+  font-weight: 800;
+  background: rgba(0,0,0,0.25);
+  padding: 2px 10px;
+  border-radius: 2px;
+  letter-spacing: 0.06em;
+  display: inline-block;
+  margin-left: 6px;
+}
+
+@media (max-width: 540px) {
+  .squeeze .wrapper { padding: 40px 18px 60px; }
+  .squeeze .form-box { padding: 28px 20px; }
+  .squeeze .whom-grid { grid-template-columns: 1fr; }
+}
+
+.squeeze .fade-up {
+  opacity: 0;
+  transform: translateY(22px);
+  animation: sq-fadeUp 0.7s ease forwards;
+}
+.squeeze .fade-up:nth-child(1) { animation-delay: 0.1s; }
+.squeeze .fade-up:nth-child(2) { animation-delay: 0.22s; }
+.squeeze .fade-up:nth-child(3) { animation-delay: 0.34s; }
+.squeeze .fade-up:nth-child(4) { animation-delay: 0.44s; }
+.squeeze .fade-up:nth-child(5) { animation-delay: 0.54s; }
+.squeeze .fade-up:nth-child(6) { animation-delay: 0.64s; }
+@keyframes sq-fadeUp { to { opacity: 1; transform: translateY(0); } }
+`;
