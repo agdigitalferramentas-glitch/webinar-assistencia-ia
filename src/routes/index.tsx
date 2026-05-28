@@ -446,14 +446,6 @@ const css = `
   padding-top: 40px;
   border-top: 1px solid var(--border);
 }
-.squeeze .section-label {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--orange);
-  margin-bottom: 20px;
-}
 .squeeze .whom-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
