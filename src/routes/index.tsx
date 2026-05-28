@@ -337,7 +337,7 @@ const css = `
   background: var(--gray);
   border: 1px solid var(--border);
   border-top: 3px solid var(--orange);
-  border-radius: 4px;
+  border-radius: 20px;
   padding: 40px 36px;
   position: relative;
   overflow: hidden;
@@ -441,7 +441,7 @@ const css = `
 .squeeze .whom-item {
   background: rgba(255,255,255,0.03);
   border: 1px solid var(--border);
-  border-radius: 3px;
+  border-radius: 20px;
   padding: 16px 18px;
   font-size: 14px;
   font-weight: 600;
@@ -462,7 +462,7 @@ const css = `
   padding: 24px 28px;
   background: rgba(232,80,10,0.06);
   border-left: 3px solid var(--orange);
-  border-radius: 2px;
+  border-radius: 20px;
 }
 .squeeze .authority p {
   font-size: 14px;
@@ -476,7 +476,7 @@ const css = `
   background: var(--gray);
   border: 1px solid var(--border);
   border-top: 3px solid var(--orange);
-  border-radius: 4px;
+  border-radius: 20px;
   padding: 36px 32px;
   margin-top: 40px;
   position: relative;
