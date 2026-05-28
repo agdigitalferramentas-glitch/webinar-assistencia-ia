@@ -42,11 +42,22 @@ function SqueezePage() {
     return () => clearTimeout(t);
   }, [seconds]);
 
-  const countdown = `${pad(Math.floor(seconds / 60))}:${pad(seconds % 60)}`;
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://agwebinar.com.br/embed.js";
+    script.async = true;
+    script.setAttribute(
+      "data-form",
+      "como-usar-intelig-ncia-artificial-para-transformar-o-instagram-da-sua-assist-ncia-t-cnica-em-um-canal-de-clientes-1779800811194",
+    );
+    script.setAttribute("data-unstyled", "true");
+    document.body.appendChild(script);
+    return () => {
+      if (script.parentNode) script.parentNode.removeChild(script);
+    };
+  }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-  };
+  const countdown = `${pad(Math.floor(seconds / 60))}:${pad(seconds % 60)}`;
 
   return (
     <>
@@ -85,29 +96,14 @@ function SqueezePage() {
             </div>
 
             <div className="hero-right fade-up">
-              <form className="form-box" onSubmit={handleSubmit}>
+              <form className="form-box" onSubmit={(e) => e.preventDefault()}>
                 <p className="form-title">Quero assistir agora</p>
                 <p className="form-subtitle">
                   Preencha abaixo, o acesso é{" "}
                   <strong>imediato e gratuito</strong>
                 </p>
 
-                <div className="form-group">
-                  <label>Seu nome</label>
-                  <input type="text" placeholder="Como prefere ser chamado?" />
-                </div>
-                <div className="form-group">
-                  <label>Seu melhor e-mail</label>
-                  <input type="email" placeholder="exemplo@email.com" />
-                </div>
-                <div className="form-group">
-                  <label>Seu Telefone (WhatsApp)</label>
-                  <input type="tel" placeholder="(00) 00000-0000" />
-                </div>
-
-                <button type="submit" className="btn-submit">
-                  ACESSAR A AULA GRATUITA <span className="arrow">→</span>
-                </button>
+                <div id="agform-como-usar-intelig-ncia-artificial-para-transformar-o-instagram-da-sua-assist-ncia-t-cnica-em-um-canal-de-clientes-1779800811194"></div>
 
                 <p className="form-privacy">
                   🔒 Seus dados estão protegidos. Sem spam.
@@ -465,6 +461,73 @@ const css = `
   font-weight: 500;
 }
 .squeeze .form-privacy a { color: #777; text-decoration: none; }
+
+.squeeze .agform,
+.squeeze [id^="agform-"] form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.squeeze .agform-field,
+.squeeze [id^="agform-"] .field,
+.squeeze [id^="agform-"] > div {
+  display: flex;
+  flex-direction: column;
+}
+.squeeze .agform-label,
+.squeeze [id^="agform-"] label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.squeeze .agform-input,
+.squeeze [id^="agform-"] input,
+.squeeze [id^="agform-"] select,
+.squeeze [id^="agform-"] textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 9999px;
+  padding: 14px 20px;
+  font-size: 15px;
+  font-family: 'Manrope', sans-serif;
+  color: var(--white);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.squeeze .agform-input::placeholder,
+.squeeze [id^="agform-"] input::placeholder { color: #555; }
+.squeeze .agform-input:focus,
+.squeeze [id^="agform-"] input:focus,
+.squeeze [id^="agform-"] select:focus,
+.squeeze [id^="agform-"] textarea:focus { border-color: var(--orange); }
+
+.squeeze .agform-button,
+.squeeze [id^="agform-"] button[type="submit"],
+.squeeze [id^="agform-"] button {
+  width: 100%;
+  background: var(--orange);
+  color: #fff;
+  font-family: 'Manrope', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: none;
+  border-radius: 9999px;
+  padding: 18px 24px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s, transform 0.15s;
+}
+.squeeze .agform-button:hover,
+.squeeze [id^="agform-"] button:hover { background: var(--orange-dark); transform: translateY(-1px); }
+.squeeze .agform-button:active,
+.squeeze [id^="agform-"] button:active { transform: translateY(0); }
 
 .squeeze .for-whom {
   margin-top: 60px;
