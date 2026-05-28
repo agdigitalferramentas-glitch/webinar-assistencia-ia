@@ -626,7 +626,7 @@ const css = `
 }
 
 @media (max-width: 540px) {
-  .squeeze .glow-blob { width: 360px; height: 360px; opacity: 0.45; top: -140px; }
+  .squeeze .glow-blob { width: 360px; height: 360px; opacity: 0.22; top: -140px; }
   .squeeze .wrapper { padding: 40px 18px 60px; }
   .squeeze .form-box { padding: 28px 20px; }
   .squeeze .whom-grid { grid-template-columns: 1fr; }
