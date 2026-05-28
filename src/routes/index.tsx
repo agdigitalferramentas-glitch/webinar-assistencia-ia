@@ -478,6 +478,33 @@ const css = `
 }
 .squeeze .authority p strong { color: var(--white); }
 
+.squeeze .bullets-card {
+  background: var(--gray);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--orange);
+  border-radius: 4px;
+  padding: 36px 32px;
+  margin-top: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.squeeze .bullets-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top center, rgba(232,80,10,0.06), transparent 70%);
+  pointer-events: none;
+}
+.squeeze .bullets-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
 .squeeze #countdown {
   font-size: 16px;
   font-weight: 800;
