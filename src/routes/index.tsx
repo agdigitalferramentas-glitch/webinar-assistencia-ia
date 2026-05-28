@@ -272,7 +272,7 @@ const css = `
   letter-spacing: 0.12em;
   text-transform: uppercase;
   padding: 5px 14px;
-  border-radius: 2px;
+  border-radius: 999px;
   margin-bottom: 28px;
 }
 
@@ -379,8 +379,8 @@ const css = `
   width: 100%;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 3px;
-  padding: 14px 16px;
+  border-radius: 9999px;
+  padding: 14px 20px;
   font-size: 15px;
   font-family: 'Manrope', sans-serif;
   color: var(--white);
@@ -398,7 +398,7 @@ const css = `
   font-size: 22px;
   letter-spacing: 0.08em;
   border: none;
-  border-radius: 3px;
+  border-radius: 9999px;
   padding: 18px 24px;
   cursor: pointer;
   margin-top: 8px;
