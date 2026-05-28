@@ -88,7 +88,7 @@ function SqueezePage() {
               <form className="form-box" onSubmit={handleSubmit}>
                 <p className="form-title">Quero assistir agora</p>
                 <p className="form-subtitle">
-                  Preencha abaixo — o acesso é{" "}
+                  Preencha abaixo, o acesso é{" "}
                   <strong>imediato e gratuito</strong>
                 </p>
 
