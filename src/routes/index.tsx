@@ -80,12 +80,6 @@ function SqueezePage() {
                 </p>
               </div>
 
-              <div className="fade-up">
-                <div className="divider" />
-                <p className="subheadline" style={{ marginTop: '10px' }}>
-                  <strong>Vagas limitadas.</strong> A turma começa em instantes.
-                </p>
-              </div>
             </div>
 
             <div className="hero-right fade-up">
