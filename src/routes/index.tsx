@@ -408,8 +408,10 @@ const css = `
   width: 100%;
   background: var(--orange);
   color: #fff;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 22px;
+  font-weight: 600;
+  text-transform: uppercase;
   letter-spacing: 0.08em;
   border: none;
   border-radius: 9999px;
