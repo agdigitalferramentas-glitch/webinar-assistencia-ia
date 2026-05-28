@@ -254,7 +254,7 @@ const css = `
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 48px;
-  align-items: start;
+  align-items: center;
 }
 
 .squeeze .hero-left {
