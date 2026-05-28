@@ -152,7 +152,7 @@ function SqueezePage() {
           </div>
 
           <div className="fade-up for-whom">
-            <p className="section-label">Esta aula é para você que...</p>
+            <p className="bullets-label">Esta aula é para você que...</p>
             <div className="whom-grid">
               <div className="whom-item">
                 Tem assistência técnica e quer vender mais pelo digital
