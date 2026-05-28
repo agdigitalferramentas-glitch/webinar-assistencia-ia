@@ -529,6 +529,12 @@ const css = `
 .squeeze .agform-button:active,
 .squeeze [id^="agform-"] button:active { transform: translateY(0); }
 
+.squeeze [id^="agform-"] h2,
+.squeeze [id^="agform-"] .agform-title,
+.squeeze [id^="agform-"] .form-header {
+  display: none !important;
+}
+
 .squeeze .for-whom {
   margin-top: 60px;
 }
