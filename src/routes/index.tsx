@@ -59,87 +59,91 @@ function SqueezePage() {
         <div className="glow-blob" />
 
         <div className="wrapper">
-          <div className="fade-up">
-            <div className="tag">Aula gratuita — Assistências Técnicas</div>
-          </div>
-
-          <div className="fade-up">
-            <h1>
-              Como transformar o Instagram da sua assistência em{" "}
-              <em>um canal de clientes</em>
-            </h1>
-          </div>
-
-          <div className="fade-up">
-            <p className="subheadline">
-              Descubra o método usado por assistências técnicas para sair do
-              improviso e <strong>gerar orçamentos com consistência</strong> —
-              usando inteligência artificial treinada para o seu nicho.
-            </p>
-          </div>
-
-          <div className="fade-up">
-            <div className="divider" />
-            <ul className="bullets">
-              <li>
-                <span>
-                  <strong>Por que seus posts não geram clientes</strong> — e o
-                  que fazer diferente a partir de hoje
-                </span>
-              </li>
-              <li>
-                <span>
-                  <strong>O sistema de conteúdo que converte</strong> atenção em
-                  orçamento, mesmo sem equipe de marketing
-                </span>
-              </li>
-              <li>
-                <span>
-                  <strong>Como a IA especializada</strong> entrega em minutos o
-                  que levaria dias para produzir sozinho
-                </span>
-              </li>
-              <li>
-                <span>
-                  <strong>A comparação ao vivo</strong> entre IA genérica e o
-                  agente treinado para assistências — você vai ver a diferença
-                  na tela
-                </span>
-              </li>
-              <li>
-                <span>
-                  <strong>O plano para sair do improviso</strong> e publicar com
-                  direção comercial a partir desta semana
-                </span>
-              </li>
-            </ul>
-          </div>
-
-          <div className="fade-up">
-            <form className="form-box" onSubmit={handleSubmit}>
-              <p className="form-title">Quero assistir agora</p>
-              <p className="form-subtitle">
-                Preencha abaixo — o acesso é{" "}
-                <strong>imediato e gratuito</strong>
-              </p>
-
-              <div className="form-group">
-                <label>Seu nome</label>
-                <input type="text" placeholder="Como prefere ser chamado?" />
-              </div>
-              <div className="form-group">
-                <label>Seu melhor e-mail</label>
-                <input type="email" placeholder="exemplo@email.com" />
+          <div className="hero-grid">
+            <div className="hero-left">
+              <div className="fade-up">
+                <div className="tag">Aula gratuita — Assistências Técnicas</div>
               </div>
 
-              <button type="submit" className="btn-submit">
-                ACESSAR A AULA GRATUITA <span className="arrow">→</span>
-              </button>
+              <div className="fade-up">
+                <h1>
+                  Como transformar o Instagram da sua assistência em{" "}
+                  <em>um canal de clientes</em>
+                </h1>
+              </div>
 
-              <p className="form-privacy">
-                🔒 Seus dados estão protegidos. Sem spam.
-              </p>
-            </form>
+              <div className="fade-up">
+                <p className="subheadline">
+                  Descubra o método usado por assistências técnicas para sair do
+                  improviso e <strong>gerar orçamentos com consistência</strong> —
+                  usando inteligência artificial treinada para o seu nicho.
+                </p>
+              </div>
+
+              <div className="fade-up">
+                <div className="divider" />
+                <ul className="bullets">
+                  <li>
+                    <span>
+                      <strong>Por que seus posts não geram clientes</strong> — e o
+                      que fazer diferente a partir de hoje
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <strong>O sistema de conteúdo que converte</strong> atenção em
+                      orçamento, mesmo sem equipe de marketing
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <strong>Como a IA especializada</strong> entrega em minutos o
+                      que levaria dias para produzir sozinho
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <strong>A comparação ao vivo</strong> entre IA genérica e o
+                      agente treinado para assistências — você vai ver a diferença
+                      na tela
+                    </span>
+                  </li>
+                  <li>
+                    <span>
+                      <strong>O plano para sair do improviso</strong> e publicar com
+                      direção comercial a partir desta semana
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="hero-right fade-up">
+              <form className="form-box" onSubmit={handleSubmit}>
+                <p className="form-title">Quero assistir agora</p>
+                <p className="form-subtitle">
+                  Preencha abaixo — o acesso é{" "}
+                  <strong>imediato e gratuito</strong>
+                </p>
+
+                <div className="form-group">
+                  <label>Seu nome</label>
+                  <input type="text" placeholder="Como prefere ser chamado?" />
+                </div>
+                <div className="form-group">
+                  <label>Seu melhor e-mail</label>
+                  <input type="email" placeholder="exemplo@email.com" />
+                </div>
+
+                <button type="submit" className="btn-submit">
+                  ACESSAR A AULA GRATUITA <span className="arrow">→</span>
+                </button>
+
+                <p className="form-privacy">
+                  🔒 Seus dados estão protegidos. Sem spam.
+                </p>
+              </form>
+            </div>
           </div>
 
           <div className="fade-up for-whom">
