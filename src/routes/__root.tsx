@@ -72,14 +72,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Webinar - Transforme o Instagram da sua assistência técnica" },
+      { name: "description", content: "Builds squeeze pages from HTML, preserving all original page settings, appearance, and effects." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Webinar - Transforme o Instagram da sua assistência técnica" },
+      { property: "og:description", content: "Builds squeeze pages from HTML, preserving all original page settings, appearance, and effects." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Webinar - Transforme o Instagram da sua assistência técnica" },
+      { name: "twitter:description", content: "Builds squeeze pages from HTML, preserving all original page settings, appearance, and effects." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/61c25358-998d-44b5-821a-0b3c71b240c0/id-preview-0e64d757--e1163d70-c480-4c6d-9cf8-9bfcaf2ac198.lovable.app-1780000775020.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/61c25358-998d-44b5-821a-0b3c71b240c0/id-preview-0e64d757--e1163d70-c480-4c6d-9cf8-9bfcaf2ac198.lovable.app-1780000775020.png" },
     ],
     links: [
       {
