@@ -489,7 +489,7 @@ const css = `
   display: grid;
   grid-template-columns: 440px 1fr;
   gap: 28px;
-  align-items: start;
+  align-items: center;
   margin-top: 8px;
 }
 .squeeze .authority-photo {
@@ -497,7 +497,7 @@ const css = `
   overflow: hidden;
   border: 1px solid var(--border);
   background: #111;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 1 / 1;
 }
 .squeeze .authority-photo img {
   width: 100%;
