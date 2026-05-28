@@ -82,39 +82,9 @@ function SqueezePage() {
 
               <div className="fade-up">
                 <div className="divider" />
-                <ul className="bullets">
-                  <li>
-                    <span>
-                      <strong>Por que seus posts não geram clientes</strong> — e o
-                      que fazer diferente a partir de hoje
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <strong>O sistema de conteúdo que converte</strong> atenção em
-                      orçamento, mesmo sem equipe de marketing
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <strong>Como a IA especializada</strong> entrega em minutos o
-                      que levaria dias para produzir sozinho
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <strong>A comparação ao vivo</strong> entre IA genérica e o
-                      agente treinado para assistências — você vai ver a diferença
-                      na tela
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <strong>O plano para sair do improviso</strong> e publicar com
-                      direção comercial a partir desta semana
-                    </span>
-                  </li>
-                </ul>
+                <p className="subheadline" style={{ marginTop: '10px' }}>
+                  <strong>Vagas limitadas.</strong> A turma começa em instantes.
+                </p>
               </div>
             </div>
 
