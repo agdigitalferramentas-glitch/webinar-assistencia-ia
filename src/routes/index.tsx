@@ -487,7 +487,7 @@ const css = `
 }
 .squeeze .authority-grid {
   display: grid;
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: 440px 1fr;
   gap: 28px;
   align-items: start;
   margin-top: 8px;
@@ -503,6 +503,7 @@ const css = `
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top center;
   display: block;
 }
 .squeeze .authority-body > p:not(.bullets-label) {
@@ -515,7 +516,7 @@ const css = `
 .squeeze .authority-body > p:not(.bullets-label) strong { color: var(--white); font-weight: 700; }
 @media (max-width: 640px) {
   .squeeze .authority-grid { grid-template-columns: 1fr; }
-  .squeeze .authority-photo { max-width: 220px; margin: 0 auto; }
+  .squeeze .authority-photo { max-width: 440px; margin: 0 auto; }
 }
 
 .squeeze .bullets-card {
