@@ -42,11 +42,22 @@ function SqueezePage() {
     return () => clearTimeout(t);
   }, [seconds]);
 
-  const countdown = `${pad(Math.floor(seconds / 60))}:${pad(seconds % 60)}`;
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://agwebinar.com.br/embed.js";
+    script.async = true;
+    script.setAttribute(
+      "data-form",
+      "como-usar-intelig-ncia-artificial-para-transformar-o-instagram-da-sua-assist-ncia-t-cnica-em-um-canal-de-clientes-1779800811194",
+    );
+    script.setAttribute("data-unstyled", "true");
+    document.body.appendChild(script);
+    return () => {
+      if (script.parentNode) script.parentNode.removeChild(script);
+    };
+  }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-  };
+  const countdown = `${pad(Math.floor(seconds / 60))}:${pad(seconds % 60)}`;
 
   return (
     <>
