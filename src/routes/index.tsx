@@ -452,11 +452,6 @@ const css = `
 
 .squeeze .for-whom {
   margin-top: 60px;
-  background: var(--gray);
-  border: 1px solid var(--border);
-  border-top: 3px solid var(--orange);
-  border-radius: 20px;
-  padding: 36px 32px;
 }
 .squeeze .whom-grid {
   display: grid;
