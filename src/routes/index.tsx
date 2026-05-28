@@ -535,6 +535,12 @@ const css = `
   display: none !important;
 }
 
+.squeeze [id^="agform-"] .agform-label,
+.squeeze [id^="agform-"] label,
+.squeeze .agform-label {
+  display: none !important;
+}
+
 .squeeze .for-whom {
   margin-top: 60px;
 }
