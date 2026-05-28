@@ -505,13 +505,14 @@ const css = `
   object-fit: cover;
   display: block;
 }
-.squeeze .authority-body p {
+.squeeze .authority-body > p:not(.bullets-label) {
   font-size: 15px;
   font-weight: 500;
   color: #b0a99f;
   line-height: 1.7;
+  margin-top: 18px;
 }
-.squeeze .authority-body p strong { color: var(--white); font-weight: 700; }
+.squeeze .authority-body > p:not(.bullets-label) strong { color: var(--white); font-weight: 700; }
 @media (max-width: 640px) {
   .squeeze .authority-grid { grid-template-columns: 1fr; }
   .squeeze .authority-photo { max-width: 220px; margin: 0 auto; }
