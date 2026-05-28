@@ -157,22 +157,22 @@ function SqueezePage() {
             <p className="bullets-label">Esta aula é para você que...</p>
             <div className="whom-grid">
               <div className="whom-item">
-                Tem assistência técnica e quer vender mais pelo digital
+                <span>Tem assistência técnica e quer vender mais pelo digital</span>
               </div>
               <div className="whom-item">
-                Posta nas redes, mas não vê resultado em orçamentos
+                <span>Posta nas redes, mas não vê resultado em orçamentos</span>
               </div>
               <div className="whom-item">
-                Quer parar de depender só de indicação
+                <span>Quer parar de depender só de indicação</span>
               </div>
               <div className="whom-item">
-                Já tentou ChatGPT e achou o resultado genérico demais
+                <span>Já tentou ChatGPT e achou o resultado genérico demais</span>
               </div>
               <div className="whom-item">
-                Gerencia ou faz o social media de uma assistência
+                <span>Gerencia ou faz o social media de uma assistência</span>
               </div>
               <div className="whom-item">
-                Quer um sistema — não mais ideias soltas
+                <span>Quer um sistema — não mais ideias soltas</span>
               </div>
             </div>
           </div>
@@ -465,9 +465,9 @@ const css = `
   gap: 12px;
 }
 .squeeze .whom-item {
-  background: rgba(8,8,8,0.68);
-  backdrop-filter: blur(18px) saturate(145%);
-  -webkit-backdrop-filter: blur(18px) saturate(145%);
+  background: rgba(8,8,8,0.72);
+  backdrop-filter: blur(10px) saturate(145%);
+  -webkit-backdrop-filter: blur(10px) saturate(145%);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 16px 18px;
@@ -479,19 +479,37 @@ const css = `
   gap: 10px;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 10px 30px rgba(0,0,0,0.18);
+}
+.squeeze .whom-item::before {
+  content: '';
+  position: absolute;
+  inset: -18px;
+  background-image: url(${bgImg});
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px);
+  opacity: 0.55;
+  z-index: -2;
 }
 .squeeze .whom-item::after {
   content: '';
   position: absolute;
   inset: -1px;
-  background: rgba(255,255,255,0.025);
+  background: rgba(8,8,8,0.62);
   pointer-events: none;
+  z-index: -1;
 }
-.squeeze .whom-item::before {
+.squeeze .whom-item span {
+  position: relative;
+  z-index: 1;
+}
+.squeeze .whom-item span::before {
   content: '→';
   color: var(--orange);
   font-size: 16px;
+  margin-right: 10px;
   flex-shrink: 0;
   position: relative;
   z-index: 1;
