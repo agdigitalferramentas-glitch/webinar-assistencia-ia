@@ -534,6 +534,7 @@ const css = `
   .squeeze .wrapper { padding: 40px 18px 60px; }
   .squeeze .form-box { padding: 28px 20px; }
   .squeeze .whom-grid { grid-template-columns: 1fr; }
+  .squeeze .btn-submit { font-size: 14px; }
   .squeeze p,
   .squeeze h1,
   .squeeze li span,
