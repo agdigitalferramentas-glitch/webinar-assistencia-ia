@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import professorImg from "@/assets/professor.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -176,13 +177,19 @@ function SqueezePage() {
           </div>
 
           <div className="fade-up authority">
-            <p>
-              <strong>Alan Terra</strong> é especialista em marketing para
-              assistências técnicas e criador do Agente de IA para Redes Sociais
-              — desenvolvido exclusivamente para quem conserta e quer vender
-              mais. Nesta aula, ele mostra na prática como transformar presença
-              em clientes.
-            </p>
+            <p className="bullets-label">Quem é o seu professor</p>
+            <div className="authority-grid">
+              <div className="authority-photo">
+                <img src={professorImg} alt="Alan Terra, especialista em marketing para assistências técnicas" loading="lazy" />
+              </div>
+              <p>
+                <strong>Alan Terra</strong> é especialista em marketing para
+                assistências técnicas e criador do Agente de IA para Redes Sociais
+                — desenvolvido exclusivamente para quem conserta e quer vender
+                mais. Nesta aula, ele mostra na prática como transformar presença
+                em clientes.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -475,18 +482,43 @@ const css = `
 
 .squeeze .authority {
   margin-top: 48px;
-  padding: 24px 28px;
-  background: rgba(232,80,10,0.06);
-  border-left: 3px solid var(--orange);
+  padding: 36px 32px;
+  background: var(--gray);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--orange);
   border-radius: 20px;
 }
-.squeeze .authority p {
-  font-size: 14px;
-  font-weight: 600;
-  color: #b0a99f;
-  line-height: 1.65;
+.squeeze .authority-grid {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 28px;
+  align-items: center;
+  margin-top: 8px;
 }
-.squeeze .authority p strong { color: var(--white); }
+.squeeze .authority-photo {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #111;
+  aspect-ratio: 3 / 4;
+}
+.squeeze .authority-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.squeeze .authority p {
+  font-size: 15px;
+  font-weight: 500;
+  color: #b0a99f;
+  line-height: 1.7;
+}
+.squeeze .authority p strong { color: var(--white); font-weight: 700; }
+@media (max-width: 640px) {
+  .squeeze .authority-grid { grid-template-columns: 1fr; }
+  .squeeze .authority-photo { max-width: 220px; margin: 0 auto; }
+}
 
 .squeeze .bullets-card {
   background: var(--gray);
