@@ -465,9 +465,9 @@ const css = `
   gap: 12px;
 }
 .squeeze .whom-item {
-  background: rgba(10,10,10,0.28);
-  backdrop-filter: blur(10px) saturate(160%);
-  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  background: rgba(28,28,28,0.28);
+  backdrop-filter: blur(5px) saturate(160%);
+  -webkit-backdrop-filter: blur(5px) saturate(160%);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 16px 18px;
@@ -490,7 +490,7 @@ const css = `
   background-image: url(${bgImg});
   background-size: cover;
   background-position: center;
-  filter: blur(10px);
+  filter: blur(5px);
   transform: scale(1.08);
   opacity: 0.9;
   z-index: -2;
@@ -500,7 +500,7 @@ const css = `
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: rgba(10,10,10,0.36);
+  background: rgba(28,28,28,0.36);
   pointer-events: none;
   z-index: -1;
 }
