@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import professorImg from "@/assets/professor.webp";
+import bgImg from "@/assets/bg-squeeze-page.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
