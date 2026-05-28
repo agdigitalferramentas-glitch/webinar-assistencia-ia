@@ -211,6 +211,11 @@ const css = `
   --muted: #8a8a8a;
   --border: rgba(255,255,255,0.07);
   background-color: var(--black);
+  background-image: linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.85)), url(${bgImg});
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   color: var(--white);
   font-family: 'Manrope', sans-serif;
   min-height: 100vh;
