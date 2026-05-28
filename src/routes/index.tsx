@@ -465,7 +465,9 @@ const css = `
   gap: 12px;
 }
 .squeeze .whom-item {
-  background: transparent;
+  background: rgba(10,10,10,0.28);
+  backdrop-filter: blur(10px) saturate(160%);
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 16px 18px;
@@ -483,21 +485,24 @@ const css = `
 .squeeze .whom-item::before {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: -22px;
   border-radius: inherit;
-  background: rgba(8,8,8,0.38);
-  backdrop-filter: blur(16px) saturate(170%);
-  -webkit-backdrop-filter: blur(16px) saturate(170%);
-  z-index: 0;
+  background-image: url(${bgImg});
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px);
+  transform: scale(1.08);
+  opacity: 0.9;
+  z-index: -2;
 }
 .squeeze .whom-item::after {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(0,0,0,0.08));
+  background: rgba(10,10,10,0.36);
   pointer-events: none;
-  z-index: 0;
+  z-index: -1;
 }
 .squeeze .whom-item span {
   position: relative;
