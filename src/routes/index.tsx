@@ -277,8 +277,8 @@ const css = `
 
 .squeeze h1 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(46px, 8vw, 82px);
-  line-height: 1;
+  font-size: clamp(40px, 5.2vw, 58px);
+  line-height: 1.05;
   letter-spacing: 0.01em;
   margin-bottom: 10px;
   color: var(--white);
