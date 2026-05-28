@@ -96,29 +96,14 @@ function SqueezePage() {
             </div>
 
             <div className="hero-right fade-up">
-              <form className="form-box" onSubmit={handleSubmit}>
+              <form className="form-box" onSubmit={(e) => e.preventDefault()}>
                 <p className="form-title">Quero assistir agora</p>
                 <p className="form-subtitle">
                   Preencha abaixo, o acesso é{" "}
                   <strong>imediato e gratuito</strong>
                 </p>
 
-                <div className="form-group">
-                  <label>Seu nome</label>
-                  <input type="text" placeholder="Como prefere ser chamado?" />
-                </div>
-                <div className="form-group">
-                  <label>Seu melhor e-mail</label>
-                  <input type="email" placeholder="exemplo@email.com" />
-                </div>
-                <div className="form-group">
-                  <label>Seu Telefone (WhatsApp)</label>
-                  <input type="tel" placeholder="(00) 00000-0000" />
-                </div>
-
-                <button type="submit" className="btn-submit">
-                  ACESSAR A AULA GRATUITA <span className="arrow">→</span>
-                </button>
+                <div id="agform-como-usar-intelig-ncia-artificial-para-transformar-o-instagram-da-sua-assist-ncia-t-cnica-em-um-canal-de-clientes-1779800811194"></div>
 
                 <p className="form-privacy">
                   🔒 Seus dados estão protegidos. Sem spam.
