@@ -601,7 +601,12 @@ const css = `
 .squeeze .hero-left .fade-up:nth-child(3) { animation-delay: 0.34s; }
 
 .squeeze .hero-right.fade-up { animation-delay: 0.3s; }
-.squeeze .fade-up.for-whom { animation-delay: 0.5s; }
+.squeeze .fade-up.for-whom {
+  animation-delay: 0.5s;
+  transform: none;
+  animation-name: sq-fadeIn;
+}
+@keyframes sq-fadeIn { to { opacity: 1; } }
 .squeeze .fade-up.authority { animation-delay: 0.6s; }
 @keyframes sq-fadeUp { to { opacity: 1; transform: translateY(0); } }
 `;
