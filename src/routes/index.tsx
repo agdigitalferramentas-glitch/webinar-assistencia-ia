@@ -98,6 +98,10 @@ function SqueezePage() {
                   <label>Seu melhor e-mail</label>
                   <input type="email" placeholder="exemplo@email.com" />
                 </div>
+                <div className="form-group">
+                  <label>Seu Telefone (WhatsApp)</label>
+                  <input type="tel" placeholder="(00) 00000-0000" />
+                </div>
 
                 <button type="submit" className="btn-submit">
                   ACESSAR A AULA GRATUITA <span className="arrow">→</span>
