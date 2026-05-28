@@ -1,7 +1,40 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import professorImg from "@/assets/professor.webp";
 import bgImg from "@/assets/bg-squeeze-page.webp";
+
+const SUPABASE_URL = "https://qywlapkndyjwbkpoqefx.supabase.co";
+const SUPABASE_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5d2xhcGtuZHlqd2JrcG9xZWZ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIyODQwMzIsImV4cCI6MjA4Nzg2MDAzMn0.zcie77tD4_3RRvQuRxTf_p9IhLpD1ViU_55b1Zo6jWU";
+const FORM_SLUG =
+  "como-usar-intelig-ncia-artificial-para-transformar-o-instagram-da-sua-assist-ncia-t-cnica-em-um-canal-de-clientes-1779800811194";
+
+type FormField = {
+  id: string;
+  label: string;
+  field_type: string;
+  placeholder: string | null;
+  required: boolean;
+};
+
+type FormDef = {
+  id: string;
+  webinar_id: string | null;
+  redirect_url: string | null;
+  thank_you_message: string | null;
+};
+
+function sbFetch(path: string, init: RequestInit = {}) {
+  return fetch(SUPABASE_URL + "/rest/v1" + path, {
+    ...init,
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: "Bearer " + SUPABASE_KEY,
+      "Content-Type": "application/json",
+      ...(init.headers || {}),
+    },
+  });
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
