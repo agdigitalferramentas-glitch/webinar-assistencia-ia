@@ -177,18 +177,20 @@ function SqueezePage() {
           </div>
 
           <div className="fade-up authority">
-            <p className="bullets-label">Quem é o seu professor</p>
             <div className="authority-grid">
               <div className="authority-photo">
                 <img src={professorImg} alt="Alan Terra, especialista em marketing para assistências técnicas" loading="lazy" />
               </div>
-              <p>
-                <strong>Alan Terra</strong> é especialista em marketing para
-                assistências técnicas e criador do Agente de IA para Redes Sociais
-                — desenvolvido exclusivamente para quem conserta e quer vender
-                mais. Nesta aula, ele mostra na prática como transformar presença
-                em clientes.
-              </p>
+              <div className="authority-body">
+                <p className="bullets-label">Quem é o seu professor</p>
+                <p>
+                  <strong>Alan Terra</strong> é especialista em marketing para
+                  assistências técnicas e criador do Agente de IA para Redes Sociais
+                  — desenvolvido exclusivamente para quem conserta e quer vender
+                  mais. Nesta aula, ele mostra na prática como transformar presença
+                  em clientes.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -492,7 +494,7 @@ const css = `
   display: grid;
   grid-template-columns: 220px 1fr;
   gap: 28px;
-  align-items: center;
+  align-items: start;
   margin-top: 8px;
 }
 .squeeze .authority-photo {
@@ -508,13 +510,13 @@ const css = `
   object-fit: cover;
   display: block;
 }
-.squeeze .authority p {
+.squeeze .authority-body p {
   font-size: 15px;
   font-weight: 500;
   color: #b0a99f;
   line-height: 1.7;
 }
-.squeeze .authority p strong { color: var(--white); font-weight: 700; }
+.squeeze .authority-body p strong { color: var(--white); font-weight: 700; }
 @media (max-width: 640px) {
   .squeeze .authority-grid { grid-template-columns: 1fr; }
   .squeeze .authority-photo { max-width: 220px; margin: 0 auto; }
