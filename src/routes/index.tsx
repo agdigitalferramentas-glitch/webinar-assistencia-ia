@@ -507,7 +507,7 @@ const css = `
 .squeeze .hero-left .fade-up:nth-child(1) { animation-delay: 0.1s; }
 .squeeze .hero-left .fade-up:nth-child(2) { animation-delay: 0.22s; }
 .squeeze .hero-left .fade-up:nth-child(3) { animation-delay: 0.34s; }
-.squeeze .hero-left .fade-up:nth-child(4) { animation-delay: 0.44s; }
+
 .squeeze .hero-right.fade-up { animation-delay: 0.3s; }
 .squeeze .fade-up.for-whom { animation-delay: 0.5s; }
 .squeeze .fade-up.authority { animation-delay: 0.6s; }
