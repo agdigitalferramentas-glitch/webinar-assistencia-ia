@@ -376,7 +376,9 @@ const css = `
 .squeeze .bullets strong { color: var(--white); }
 
 .squeeze .form-box {
-  background: var(--gray);
+  background: rgba(28,28,28,0.7);
+  backdrop-filter: blur(5px) saturate(160%);
+  -webkit-backdrop-filter: blur(5px) saturate(160%);
   border: 1px solid var(--border);
   border-top: 3px solid var(--orange);
   border-radius: 20px;
