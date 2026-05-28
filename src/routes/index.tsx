@@ -320,10 +320,10 @@ const css = `
 
 .squeeze .bullets {
   list-style: none;
-  margin-bottom: 48px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  position: relative;
+  z-index: 1;
 }
 .squeeze .bullets li {
   display: flex;
@@ -333,17 +333,22 @@ const css = `
   font-weight: 500;
   color: #ccc8c0;
   line-height: 1.55;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.squeeze .bullets li:last-child {
+  border-bottom: none;
 }
 .squeeze .bullets li::before {
   content: '';
   display: block;
   flex-shrink: 0;
-  width: 20px;
-  height: 20px;
-  margin-top: 1px;
+  width: 8px;
+  height: 8px;
+  margin-top: 7px;
+  border-radius: 50%;
   background: var(--orange);
-  clip-path: polygon(0 50%, 38% 0, 100% 0, 100% 100%, 38% 100%);
-  opacity: 0.9;
+  box-shadow: 0 0 0 3px rgba(232, 80, 10, 0.18);
 }
 .squeeze .bullets strong { color: var(--white); }
 
@@ -507,12 +512,21 @@ const css = `
 }
 .squeeze .bullets-label {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 22px;
+  font-size: 26px;
   letter-spacing: 0.04em;
   color: var(--white);
-  margin-bottom: 24px;
+  margin-bottom: 8px;
   position: relative;
   z-index: 1;
+}
+.squeeze .bullets-label::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: var(--orange);
+  border-radius: 2px;
+  margin-top: 10px;
 }
 
 .squeeze #countdown {
