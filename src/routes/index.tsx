@@ -75,7 +75,7 @@ function SqueezePage() {
               <div className="fade-up">
                 <p className="subheadline">
                   Descubra o método usado por assistências técnicas para sair do
-                  improviso e <strong>gerar orçamentos com consistência</strong> —
+                  improviso e <strong>gerar orçamentos com consistência</strong>,
                   usando inteligência artificial treinada para o seu nicho.
                 </p>
               </div>
