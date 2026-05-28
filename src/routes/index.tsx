@@ -51,7 +51,7 @@ function SqueezePage() {
       <style>{css}</style>
       <div className="squeeze">
         <div className="urgency-bar">
-          🔴 &nbsp;UMA TURMA ESTÁ COMEÇANDO EM&nbsp;
+          <span className="blink-circle" /> &nbsp;UMA TURMA ESTÁ COMEÇANDO EM&nbsp;
           <span id="countdown">{countdown}</span>
           &nbsp;— Cadastre-se e assista agora
         </div>
@@ -210,7 +210,7 @@ const css = `
 .squeeze *, .squeeze *::before, .squeeze *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 .squeeze .urgency-bar {
-  background: var(--orange);
+  background: #dc2626;
   color: #fff;
   text-align: center;
   padding: 10px 20px;
