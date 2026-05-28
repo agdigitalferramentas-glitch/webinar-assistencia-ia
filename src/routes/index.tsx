@@ -152,7 +152,7 @@ function SqueezePage() {
           </div>
 
           <div className="fade-up for-whom">
-            <p className="section-label">Esta aula é para você que...</p>
+            <p className="bullets-label">Esta aula é para você que...</p>
             <div className="whom-grid">
               <div className="whom-item">
                 Tem assistência técnica e quer vender mais pelo digital
@@ -445,14 +445,6 @@ const css = `
   margin-top: 60px;
   padding-top: 40px;
   border-top: 1px solid var(--border);
-}
-.squeeze .section-label {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--orange);
-  margin-bottom: 20px;
 }
 .squeeze .whom-grid {
   display: grid;
