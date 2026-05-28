@@ -482,6 +482,10 @@ const css = `
   margin-left: 6px;
 }
 
+@media (max-width: 900px) {
+  .squeeze .hero-grid { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 540px) {
   .squeeze .wrapper { padding: 40px 18px 60px; }
   .squeeze .form-box { padding: 28px 20px; }
@@ -493,11 +497,12 @@ const css = `
   transform: translateY(22px);
   animation: sq-fadeUp 0.7s ease forwards;
 }
-.squeeze .fade-up:nth-child(1) { animation-delay: 0.1s; }
-.squeeze .fade-up:nth-child(2) { animation-delay: 0.22s; }
-.squeeze .fade-up:nth-child(3) { animation-delay: 0.34s; }
-.squeeze .fade-up:nth-child(4) { animation-delay: 0.44s; }
-.squeeze .fade-up:nth-child(5) { animation-delay: 0.54s; }
-.squeeze .fade-up:nth-child(6) { animation-delay: 0.64s; }
+.squeeze .hero-left .fade-up:nth-child(1) { animation-delay: 0.1s; }
+.squeeze .hero-left .fade-up:nth-child(2) { animation-delay: 0.22s; }
+.squeeze .hero-left .fade-up:nth-child(3) { animation-delay: 0.34s; }
+.squeeze .hero-left .fade-up:nth-child(4) { animation-delay: 0.44s; }
+.squeeze .hero-right.fade-up { animation-delay: 0.3s; }
+.squeeze .fade-up.for-whom { animation-delay: 0.5s; }
+.squeeze .fade-up.authority { animation-delay: 0.6s; }
 @keyframes sq-fadeUp { to { opacity: 1; transform: translateY(0); } }
 `;
