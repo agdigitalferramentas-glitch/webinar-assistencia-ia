@@ -75,20 +75,96 @@ function SqueezePage() {
     return () => clearTimeout(t);
   }, [seconds]);
 
+  const [form, setForm] = useState<FormDef | null>(null);
+  const [fields, setFields] = useState<FormField[]>([]);
+  const [values, setValues] = useState<Record<string, string>>({});
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [done, setDone] = useState(false);
+
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://agwebinar.com.br/embed.js";
-    script.async = true;
-    script.setAttribute(
-      "data-form",
-      "como-usar-intelig-ncia-artificial-para-transformar-o-instagram-da-sua-assist-ncia-t-cnica-em-um-canal-de-clientes-1779800811194",
-    );
-    script.setAttribute("data-unstyled", "true");
-    document.body.appendChild(script);
+    let cancelled = false;
+    (async () => {
+      try {
+        const fRes = await sbFetch(
+          `/forms?slug=eq.${encodeURIComponent(FORM_SLUG)}&status=eq.published&select=id,webinar_id,redirect_url,thank_you_message`,
+        );
+        const fRows = (await fRes.json()) as FormDef[];
+        const f = fRows && fRows[0];
+        if (!f || cancelled) return;
+        const ffRes = await sbFetch(
+          `/form_fields?form_id=eq.${f.id}&select=id,label,field_type,placeholder,required&order=sort_order.asc`,
+        );
+        const ff = (await ffRes.json()) as FormField[];
+        if (cancelled) return;
+        setForm(f);
+        setFields(ff || []);
+      } catch {
+        if (!cancelled) setError("Não foi possível carregar o formulário.");
+      }
+    })();
     return () => {
-      if (script.parentNode) script.parentNode.removeChild(script);
+      cancelled = true;
     };
   }, []);
+
+  const inputTypeFor = (ft: string) =>
+    ft === "email" ? "email" : ft === "tel" ? "tel" : ft === "number" ? "number" : "text";
+
+  const emailField = useMemo(() => fields.find((f) => f.field_type === "email"), [fields]);
+  const nameField = useMemo(
+    () => fields.find((f) => f.field_type === "text" && /nome/i.test(f.label)),
+    [fields],
+  );
+  const phoneField = useMemo(() => fields.find((f) => f.field_type === "tel"), [fields]);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!form || submitting) return;
+    setError(null);
+
+    for (const f of fields) {
+      if (f.required && !values[f.id]) {
+        setError(`O campo "${f.label}" é obrigatório.`);
+        return;
+      }
+    }
+
+    setSubmitting(true);
+    try {
+      const subRes = await sbFetch("/form_submissions", {
+        method: "POST",
+        body: JSON.stringify({ form_id: form.id, data: values }),
+      });
+      if (!subRes.ok) throw new Error("submission failed");
+
+      if (form.webinar_id && emailField && values[emailField.id]) {
+        try {
+          await sbFetch("/rpc/register_for_webinar", {
+            method: "POST",
+            body: JSON.stringify({
+              p_webinar_id: form.webinar_id,
+              p_email: values[emailField.id],
+              p_name: nameField ? values[nameField.id] || "Lead" : "Lead",
+              p_phone: phoneField ? values[phoneField.id] || null : null,
+            }),
+          });
+        } catch {
+          // não bloqueia: a inscrição principal já foi salva
+        }
+      }
+
+      if (form.redirect_url) {
+        window.location.href = form.redirect_url;
+        return;
+      }
+      setDone(true);
+    } catch {
+      setError("Erro ao enviar. Tente novamente.");
+      setSubmitting(false);
+    }
+  }
+
 
   const countdown = `${pad(Math.floor(seconds / 60))}:${pad(seconds % 60)}`;
 
