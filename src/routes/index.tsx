@@ -409,7 +409,7 @@ const css = `
   background: var(--orange);
   color: #fff;
   font-family: 'Manrope', sans-serif;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
