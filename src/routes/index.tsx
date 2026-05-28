@@ -465,7 +465,9 @@ const css = `
   gap: 12px;
 }
 .squeeze .whom-item {
-  background: rgba(255,255,255,0.03);
+  background: rgba(20,20,20,0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 16px 18px;
