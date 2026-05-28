@@ -82,39 +82,9 @@ function SqueezePage() {
 
               <div className="fade-up">
                 <div className="divider" />
-                <ul className="bullets">
-                  <li>
-                    <span>
-                      <strong>Por que seus posts não geram clientes</strong> — e o
-                      que fazer diferente a partir de hoje
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <strong>O sistema de conteúdo que converte</strong> atenção em
-                      orçamento, mesmo sem equipe de marketing
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <strong>Como a IA especializada</strong> entrega em minutos o
-                      que levaria dias para produzir sozinho
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <strong>A comparação ao vivo</strong> entre IA genérica e o
-                      agente treinado para assistências — você vai ver a diferença
-                      na tela
-                    </span>
-                  </li>
-                  <li>
-                    <span>
-                      <strong>O plano para sair do improviso</strong> e publicar com
-                      direção comercial a partir desta semana
-                    </span>
-                  </li>
-                </ul>
+                <p className="subheadline" style={{ marginTop: '10px' }}>
+                  <strong>Vagas limitadas.</strong> A turma começa em instantes.
+                </p>
               </div>
             </div>
 
@@ -167,6 +137,43 @@ function SqueezePage() {
               <div className="whom-item">
                 Quer um sistema — não mais ideias soltas
               </div>
+            </div>
+
+            <div className="bullets-card fade-up">
+              <p className="bullets-label">O que você vai aprender</p>
+              <ul className="bullets">
+                <li>
+                  <span>
+                    <strong>Por que seus posts não geram clientes</strong> — e o
+                    que fazer diferente a partir de hoje
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>O sistema de conteúdo que converte</strong> atenção em
+                    orçamento, mesmo sem equipe de marketing
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>Como a IA especializada</strong> entrega em minutos o
+                    que levaria dias para produzir sozinho
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>A comparação ao vivo</strong> entre IA genérica e o
+                    agente treinado para assistências — você vai ver a diferença na
+                    tela
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <strong>O plano para sair do improviso</strong> e publicar com
+                    direção comercial a partir desta semana
+                  </span>
+                </li>
+              </ul>
             </div>
           </div>
 
@@ -471,6 +478,33 @@ const css = `
 }
 .squeeze .authority p strong { color: var(--white); }
 
+.squeeze .bullets-card {
+  background: var(--gray);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--orange);
+  border-radius: 4px;
+  padding: 36px 32px;
+  margin-top: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.squeeze .bullets-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top center, rgba(232,80,10,0.06), transparent 70%);
+  pointer-events: none;
+}
+.squeeze .bullets-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
 .squeeze #countdown {
   font-size: 16px;
   font-weight: 800;
@@ -500,7 +534,7 @@ const css = `
 .squeeze .hero-left .fade-up:nth-child(1) { animation-delay: 0.1s; }
 .squeeze .hero-left .fade-up:nth-child(2) { animation-delay: 0.22s; }
 .squeeze .hero-left .fade-up:nth-child(3) { animation-delay: 0.34s; }
-.squeeze .hero-left .fade-up:nth-child(4) { animation-delay: 0.44s; }
+
 .squeeze .hero-right.fade-up { animation-delay: 0.3s; }
 .squeeze .fade-up.for-whom { animation-delay: 0.5s; }
 .squeeze .fade-up.authority { animation-delay: 0.6s; }
