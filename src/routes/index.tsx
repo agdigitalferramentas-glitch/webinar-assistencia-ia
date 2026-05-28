@@ -512,12 +512,21 @@ const css = `
 }
 .squeeze .bullets-label {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 22px;
+  font-size: 26px;
   letter-spacing: 0.04em;
   color: var(--white);
-  margin-bottom: 24px;
+  margin-bottom: 8px;
   position: relative;
   z-index: 1;
+}
+.squeeze .bullets-label::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: var(--orange);
+  border-radius: 2px;
+  margin-top: 10px;
 }
 
 .squeeze #countdown {
