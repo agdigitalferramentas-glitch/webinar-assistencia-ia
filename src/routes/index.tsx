@@ -249,6 +249,14 @@ const css = `
 }
 @keyframes blink-pulse { 0%,100%{opacity:1; transform:scale(1)} 50%{opacity:.4; transform:scale(.85)} }
 
+.squeeze::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.30);
+  pointer-events: none;
+  z-index: 0;
+}
 .squeeze::before {
   content: '';
   position: fixed;
