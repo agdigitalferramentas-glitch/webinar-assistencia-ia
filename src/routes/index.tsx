@@ -13,13 +13,13 @@ const FORM_CONTAINER_ID = `agform-${FORM_SLUG}`;
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Webinário Gratuito — Alan Terra" },
+      { title: "Webinário Gratuito - Alan Terra" },
       {
         name: "description",
         content:
           "Aula gratuita: como transformar o Instagram da sua assistência técnica em um canal de clientes com IA especializada.",
       },
-      { property: "og:title", content: "Webinário Gratuito — Alan Terra" },
+      { property: "og:title", content: "Webinário Gratuito - Alan Terra" },
       {
         property: "og:description",
         content:
@@ -107,7 +107,7 @@ function SqueezePage() {
         <div className="urgency-bar">
           <span className="blink-circle" /> &nbsp;UMA TURMA ESTÁ COMEÇANDO EM&nbsp;
           <span id="countdown">{countdown}</span>
-          &nbsp;— Cadastre-se e assista agora
+          &nbsp;- Cadastre-se e assista agora
         </div>
 
         <div className="glow-blob" />
@@ -116,7 +116,7 @@ function SqueezePage() {
           <div className="hero-grid">
             <div className="hero-left">
               <div className="fade-up">
-                <div className="tag">Aula gratuita — Assistências Técnicas</div>
+                <div className="tag">Aula gratuita - Assistências Técnicas</div>
               </div>
 
               <div className="fade-up">
@@ -159,7 +159,7 @@ function SqueezePage() {
             <ul className="bullets">
               <li>
                 <span>
-                  <strong>Por que seus posts não geram clientes</strong> — e o
+                  <strong>Por que seus posts não geram clientes</strong> - e o
                   que fazer diferente a partir de hoje
                 </span>
               </li>
@@ -178,7 +178,7 @@ function SqueezePage() {
               <li>
                 <span>
                   <strong>A comparação ao vivo</strong> entre IA genérica e o
-                  agente treinado para assistências — você vai ver a diferença na
+                  agente treinado para assistências - você vai ver a diferença na
                   tela
                 </span>
               </li>
@@ -210,7 +210,7 @@ function SqueezePage() {
                 <span>Gerencia ou faz o social media de uma assistência</span>
               </div>
               <div className="whom-item">
-                <span>Quer um sistema — não mais ideias soltas</span>
+                <span>Quer um sistema - não mais ideias soltas</span>
               </div>
             </div>
           </div>
