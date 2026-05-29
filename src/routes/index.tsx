@@ -19,7 +19,7 @@ export const Route = createFileRoute("/")({
         content:
           "Aula gratuita: como transformar o Instagram da sua assistência técnica em um canal de clientes com IA especializada.",
       },
-      { property: "og:title", content: "Webinário Gratuito — Alan Terra" },
+      { property: "og:title", content: "Webinário Gratuito - Alan Terra" },
       {
         property: "og:description",
         content:
@@ -107,7 +107,7 @@ function SqueezePage() {
         <div className="urgency-bar">
           <span className="blink-circle" /> &nbsp;UMA TURMA ESTÁ COMEÇANDO EM&nbsp;
           <span id="countdown">{countdown}</span>
-          &nbsp;— Cadastre-se e assista agora
+          &nbsp;- Cadastre-se e assista agora
         </div>
 
         <div className="glow-blob" />
@@ -116,7 +116,7 @@ function SqueezePage() {
           <div className="hero-grid">
             <div className="hero-left">
               <div className="fade-up">
-                <div className="tag">Aula gratuita — Assistências Técnicas</div>
+                <div className="tag">Aula gratuita - Assistências Técnicas</div>
               </div>
 
               <div className="fade-up">
