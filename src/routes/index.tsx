@@ -13,7 +13,7 @@ const FORM_CONTAINER_ID = `agform-${FORM_SLUG}`;
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Webinário Gratuito — Alan Terra" },
+      { title: "Webinário Gratuito - Alan Terra" },
       {
         name: "description",
         content:
