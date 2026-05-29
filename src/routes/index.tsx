@@ -224,8 +224,8 @@ function SqueezePage() {
                 <p className="bullets-label">Quem é o seu professor</p>
                 <p>
                   <strong>Alan Terra</strong> é especialista em marketing para
-                  assistências técnicas e criador do Agente de IA para Redes Sociais
-                  — desenvolvido exclusivamente para quem conserta e quer vender
+                  assistências técnicas e criador do Agente de IA para Redes Sociais,
+                  desenvolvido exclusivamente para quem conserta e quer vender
                   mais. Nesta aula, ele mostra na prática como transformar presença
                   em clientes.
                 </p>
