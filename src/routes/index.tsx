@@ -50,6 +50,43 @@ function SqueezePage() {
   }, [seconds]);
 
   useEffect(() => {
+    // Patch para o bug do embed.js oficial do AGWebinar:
+    // ele chama r.json() em respostas 201 com body vazio (POST /form_submissions
+    // não pede Prefer: return=representation), o que lança SyntaxError e
+    // dispara o catch com "Erro ao enviar. Tente novamente.".
+    // Interceptamos respostas do REST do Supabase com body vazio e devolvemos
+    // um JSON válido ("null") para que o fluxo do embed continue.
+    const w = window as unknown as { __agFetchPatched?: boolean };
+    if (!w.__agFetchPatched) {
+      w.__agFetchPatched = true;
+      const originalFetch = window.fetch.bind(window);
+      window.fetch = async (input: RequestInfo | URL, init?: RequestInit) => {
+        const res = await originalFetch(input, init);
+        try {
+          const url =
+            typeof input === "string"
+              ? input
+              : input instanceof URL
+                ? input.href
+                : input.url;
+          if (
+            res.ok &&
+            url.includes("qywlapkndyjwbkpoqefx.supabase.co/rest/v1") &&
+            res.headers.get("content-length") === "0"
+          ) {
+            return new Response("null", {
+              status: res.status,
+              statusText: res.statusText,
+              headers: res.headers,
+            });
+          }
+        } catch {
+          /* ignore */
+        }
+        return res;
+      };
+    }
+
     if (document.querySelector(`script[src="${EMBED_SCRIPT_SRC}"]`)) return;
     const s = document.createElement("script");
     s.src = EMBED_SCRIPT_SRC;
@@ -58,6 +95,7 @@ function SqueezePage() {
     s.setAttribute("data-unstyled", "true");
     document.body.appendChild(s);
   }, []);
+
 
 
   const countdown = `${pad(Math.floor(seconds / 60))}:${pad(seconds % 60)}`;
