@@ -1,40 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import professorImg from "@/assets/professor.webp";
 import bgImg from "@/assets/bg-squeeze-page.webp";
 
-const SUPABASE_URL = "https://qywlapkndyjwbkpoqefx.supabase.co";
-const SUPABASE_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5d2xhcGtuZHlqd2JrcG9xZWZ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIyODQwMzIsImV4cCI6MjA4Nzg2MDAzMn0.zcie77tD4_3RRvQuRxTf_p9IhLpD1ViU_55b1Zo6jWU";
-const FORM_SLUG =
-  "como-usar-intelig-ncia-artificial-para-transformar-o-instagram-da-sua-assist-ncia-t-cnica-em-um-canal-de-clientes-1779800811194";
+const EMBED_SCRIPT_SRC =
+  "https://qywlapkndyjwbkpoqefx.supabase.co/storage/v1/object/public/embed/embed.js";
+const FORM_CONTAINER_ID =
+  "agform-como-usar-intelig-ncia-artificial-para-transformar-o-instagram-da-sua-assist-ncia-t-cnica-em-um-canal-de-clientes-1779800811194";
 
-type FormField = {
-  id: string;
-  label: string;
-  field_type: string;
-  placeholder: string | null;
-  required: boolean;
-};
-
-type FormDef = {
-  id: string;
-  webinar_id: string | null;
-  redirect_url: string | null;
-  thank_you_message: string | null;
-};
-
-function sbFetch(path: string, init: RequestInit = {}) {
-  return fetch(SUPABASE_URL + "/rest/v1" + path, {
-    ...init,
-    headers: {
-      apikey: SUPABASE_KEY,
-      Authorization: "Bearer " + SUPABASE_KEY,
-      "Content-Type": "application/json",
-      ...(init.headers || {}),
-    },
-  });
-}
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -75,96 +48,13 @@ function SqueezePage() {
     return () => clearTimeout(t);
   }, [seconds]);
 
-  const [form, setForm] = useState<FormDef | null>(null);
-  const [fields, setFields] = useState<FormField[]>([]);
-  const [values, setValues] = useState<Record<string, string>>({});
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [done, setDone] = useState(false);
-
   useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      try {
-        const fRes = await sbFetch(
-          `/forms?slug=eq.${encodeURIComponent(FORM_SLUG)}&status=eq.published&select=id,webinar_id,redirect_url,thank_you_message`,
-        );
-        const fRows = (await fRes.json()) as FormDef[];
-        const f = fRows && fRows[0];
-        if (!f || cancelled) return;
-        const ffRes = await sbFetch(
-          `/form_fields?form_id=eq.${f.id}&select=id,label,field_type,placeholder,required&order=sort_order.asc`,
-        );
-        const ff = (await ffRes.json()) as FormField[];
-        if (cancelled) return;
-        setForm(f);
-        setFields(ff || []);
-      } catch {
-        if (!cancelled) setError("Não foi possível carregar o formulário.");
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
+    if (document.querySelector(`script[src="${EMBED_SCRIPT_SRC}"]`)) return;
+    const s = document.createElement("script");
+    s.src = EMBED_SCRIPT_SRC;
+    s.async = true;
+    document.body.appendChild(s);
   }, []);
-
-  const inputTypeFor = (ft: string) =>
-    ft === "email" ? "email" : ft === "tel" ? "tel" : ft === "number" ? "number" : "text";
-
-  const emailField = useMemo(() => fields.find((f) => f.field_type === "email"), [fields]);
-  const nameField = useMemo(
-    () => fields.find((f) => f.field_type === "text" && /nome/i.test(f.label)),
-    [fields],
-  );
-  const phoneField = useMemo(() => fields.find((f) => f.field_type === "tel"), [fields]);
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!form || submitting) return;
-    setError(null);
-
-    for (const f of fields) {
-      if (f.required && !values[f.id]) {
-        setError(`O campo "${f.label}" é obrigatório.`);
-        return;
-      }
-    }
-
-    setSubmitting(true);
-    try {
-      const subRes = await sbFetch("/form_submissions", {
-        method: "POST",
-        body: JSON.stringify({ form_id: form.id, data: values }),
-      });
-      if (!subRes.ok) throw new Error("submission failed");
-
-      if (form.webinar_id && emailField && values[emailField.id]) {
-        try {
-          await sbFetch("/rpc/register_for_webinar", {
-            method: "POST",
-            body: JSON.stringify({
-              p_webinar_id: form.webinar_id,
-              p_email: values[emailField.id],
-              p_name: nameField ? values[nameField.id] || "Lead" : "Lead",
-              p_phone: phoneField ? values[phoneField.id] || null : null,
-            }),
-          });
-        } catch {
-          // não bloqueia: a inscrição principal já foi salva
-        }
-      }
-
-      if (form.redirect_url) {
-        window.location.href = form.redirect_url;
-        return;
-      }
-      setDone(true);
-    } catch {
-      setError("Erro ao enviar. Tente novamente.");
-      setSubmitting(false);
-    }
-  }
-
 
   const countdown = `${pad(Math.floor(seconds / 60))}:${pad(seconds % 60)}`;
 
@@ -212,33 +102,7 @@ function SqueezePage() {
                   <strong>imediato e gratuito</strong>
                 </p>
 
-                {done ? (
-                  <div className="agform-success">
-                    {form?.thank_you_message || "Obrigado! Recebemos seu envio."}
-                  </div>
-                ) : (
-                  <form className="agform" onSubmit={handleSubmit} noValidate>
-                    {fields.map((f) => (
-                      <div key={f.id} className="agform-field">
-                        <input
-                          className="agform-input"
-                          type={inputTypeFor(f.field_type)}
-                          placeholder={f.placeholder || f.label}
-                          required={f.required}
-                          value={values[f.id] || ""}
-                          onChange={(e) =>
-                            setValues((v) => ({ ...v, [f.id]: e.target.value }))
-                          }
-                          aria-label={f.label}
-                        />
-                      </div>
-                    ))}
-                    {error && <div className="agform-error">{error}</div>}
-                    <button type="submit" className="agform-button" disabled={submitting || !form}>
-                      {submitting ? "Enviando..." : "Enviar"}
-                    </button>
-                  </form>
-                )}
+                <div id={FORM_CONTAINER_ID}></div>
 
                 <p className="form-privacy">
                   🔒 Seus dados estão protegidos. Sem spam.
@@ -246,6 +110,7 @@ function SqueezePage() {
               </div>
             </div>
           </div>
+
 
           <div className="bullets-card fade-up">
             <p className="bullets-label">O que você vai aprender</p>
@@ -676,21 +541,8 @@ const css = `
   display: none !important;
 }
 
-.squeeze .agform-error {
-  color: #ffb4b4;
-  font-size: 13px;
-  font-weight: 600;
-  text-align: center;
-}
-.squeeze .agform-success {
-  padding: 18px;
-  border-radius: 12px;
-  background: rgba(34, 197, 94, 0.12);
-  border: 1px solid rgba(34, 197, 94, 0.35);
-  color: #d1fadf;
-  font-weight: 600;
-  text-align: center;
-}
+
+
 
 .squeeze .for-whom {
   margin-top: 60px;
