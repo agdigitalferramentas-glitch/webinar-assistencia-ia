@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import professorImg from "@/assets/professor.webp";
 import bgImg from "@/assets/bg-squeeze-page.webp";
 
-const EMBED_SCRIPT_SRC =
-  "https://qywlapkndyjwbkpoqefx.supabase.co/storage/v1/object/public/embed/embed.js";
-const FORM_CONTAINER_ID =
-  "agform-como-usar-intelig-ncia-artificial-para-transformar-o-instagram-da-sua-assist-ncia-t-cnica-em-um-canal-de-clientes-1779800811194";
+const EMBED_SCRIPT_SRC = "https://agwebinar.com.br/embed.js";
+const FORM_SLUG =
+  "como-usar-intelig-ncia-artificial-para-transformar-o-instagram-da-sua-assist-ncia-t-cnica-em-um-canal-de-clientes-1779800811194";
+const FORM_CONTAINER_ID = `agform-${FORM_SLUG}`;
+
 
 
 export const Route = createFileRoute("/")({
@@ -53,8 +54,11 @@ function SqueezePage() {
     const s = document.createElement("script");
     s.src = EMBED_SCRIPT_SRC;
     s.async = true;
+    s.setAttribute("data-form", FORM_SLUG);
+    s.setAttribute("data-unstyled", "true");
     document.body.appendChild(s);
   }, []);
+
 
   const countdown = `${pad(Math.floor(seconds / 60))}:${pad(seconds % 60)}`;
 
