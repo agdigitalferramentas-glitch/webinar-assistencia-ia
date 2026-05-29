@@ -234,6 +234,22 @@ function SqueezePage() {
             </div>
           </div>
         </div>
+
+        <footer className="footer">
+          <div className="footer-inner">
+            <div className="footer-left">
+              <img src={logoH2Web} alt="H2Web" className="footer-logo" loading="lazy" />
+              <span className="footer-copy">H2Web Copyright ©2026 Todos os direitos reservados.</span>
+            </div>
+            <div className="footer-right">
+              <p>Transformamos conhecimento em negócios lucrativos</p>
+              <p className="footer-cta">
+                Venha ser um Expert{" "}
+                <a href="https://agwebi.com.br/" target="_blank" rel="noopener noreferrer">AG WEBi</a>
+              </p>
+            </div>
+          </div>
+        </footer>
       </div>
     </>
   );
