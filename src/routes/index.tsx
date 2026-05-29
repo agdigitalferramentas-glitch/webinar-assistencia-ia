@@ -1,13 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import professorImg from "@/assets/professor.webp";
 import bgImg from "@/assets/bg-squeeze-page.webp";
 
-const SUPABASE_URL = "https://qywlapkndyjwbkpoqefx.supabase.co";
-const SUPABASE_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5d2xhcGtuZHlqd2JrcG9xZWZ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIyODQwMzIsImV4cCI6MjA4Nzg2MDAzMn0.zcie77tD4_3RRvQuRxTf_p9IhLpD1ViU_55b1Zo6jWU";
-const FORM_SLUG =
-  "como-usar-intelig-ncia-artificial-para-transformar-o-instagram-da-sua-assist-ncia-t-cnica-em-um-canal-de-clientes-1779800811194";
+const EMBED_SCRIPT_SRC =
+  "https://qywlapkndyjwbkpoqefx.supabase.co/storage/v1/object/public/embed/embed.js";
+const FORM_CONTAINER_ID =
+  "agform-como-usar-intelig-ncia-artificial-para-transformar-o-instagram-da-sua-assist-ncia-t-cnica-em-um-canal-de-clientes-1779800811194";
+
 
 type FormField = {
   id: string;
