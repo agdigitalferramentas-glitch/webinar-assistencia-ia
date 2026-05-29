@@ -54,8 +54,11 @@ function SqueezePage() {
     const s = document.createElement("script");
     s.src = EMBED_SCRIPT_SRC;
     s.async = true;
+    s.setAttribute("data-form", FORM_SLUG);
+    s.setAttribute("data-unstyled", "true");
     document.body.appendChild(s);
   }, []);
+
 
   const countdown = `${pad(Math.floor(seconds / 60))}:${pad(seconds % 60)}`;
 
