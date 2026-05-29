@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import professorImg from "@/assets/professor.webp";
 import bgImg from "@/assets/bg-squeeze-page.webp";
+import logoH2Web from "@/assets/logo-h2web.webp";
 
 const EMBED_SCRIPT_SRC = "https://agwebinar.com.br/embed.js";
 const FORM_SLUG =
