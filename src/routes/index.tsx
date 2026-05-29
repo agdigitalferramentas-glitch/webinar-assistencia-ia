@@ -210,7 +210,7 @@ function SqueezePage() {
                 <span>Gerencia ou faz o social media de uma assistência</span>
               </div>
               <div className="whom-item">
-                <span>Quer um sistema - não mais ideias soltas</span>
+                <span>Quer um sistema e não mais ideias soltas</span>
               </div>
             </div>
           </div>
