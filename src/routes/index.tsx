@@ -107,7 +107,7 @@ function SqueezePage() {
         <div className="urgency-bar">
           <span className="blink-circle" /> &nbsp;UMA TURMA ESTÁ COMEÇANDO EM&nbsp;
           <span id="countdown">{countdown}</span>
-          &nbsp;- Cadastre-se e assista agora
+          &nbsp;CADASTRE-SE E ASSISTA AGORA
         </div>
 
         <div className="glow-blob" />
