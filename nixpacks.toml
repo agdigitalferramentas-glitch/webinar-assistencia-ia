@@ -8,5 +8,4 @@
  cmds = ["npm run build"]
  
 [start]
-  cmd = '''${UNIVERSAL_START_CMD}'''
- 
+cmd = '''sh -c 'if [ -f .output/server/index.mjs ]; then NODE_ENV=production PORT=${PORT:-3000} HOST=0.0.0.0 node .output/server/index.mjs; elif [ -f dist/server/index.js ]; then NODE_ENV=production PORT=${PORT:-3000} HOST=0.0.0.0 node dist/server/index.js; elif [ -f dist/server/server.js ]; then NODE_ENV=production PORT=${PORT:-3000} HOST=0.0.0.0 node dist/server/server.js; elif [ -f dist/server/index.mjs ]; then NODE_ENV=production PORT=${PORT:-3000} HOST=0.0.0.0 node dist/server/index.mjs; elif [ -f dist/server/server.mjs ]; then NODE_ENV=production PORT=${PORT:-3000} HOST=0.0.0.0 node dist/server/server.mjs; elif [ -f dist/client/index.html ]; then node deployhub-health-server.mjs dist/client ${PORT:-3000}; elif [ -f dist/index.html ]; then node deployhub-health-server.mjs dist ${PORT:-3000}; elif [ -d .wrangler/static ] || [ -f wrangler.jsonc ] || [ -f wrangler.toml ]; then echo Cloudflare Workers detected. Serving static part as fallback.; node deployhub-health-server.mjs dist ${PORT:-3000}; else echo Missing runnable build output; ls -la .output dist; find . -maxdepth 3 -not -path "*/node_modules/*"; exit 1; fi''''
