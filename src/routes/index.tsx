@@ -159,7 +159,7 @@ function SqueezePage() {
             <ul className="bullets">
               <li>
                 <span>
-                  <strong>Por que seus posts não geram clientes</strong> - e o
+                  <strong>Por que seus posts não geram clientes</strong> e o
                   que fazer diferente a partir de hoje
                 </span>
               </li>
@@ -178,7 +178,7 @@ function SqueezePage() {
               <li>
                 <span>
                   <strong>A comparação ao vivo</strong> entre IA genérica e o
-                  agente treinado para assistências - você vai ver a diferença na
+                  agente treinado para assistências você vai ver a diferença na
                   tela
                 </span>
               </li>
