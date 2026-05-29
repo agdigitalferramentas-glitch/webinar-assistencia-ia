@@ -541,21 +541,8 @@ const css = `
   display: none !important;
 }
 
-.squeeze .agform-error {
-  color: #ffb4b4;
-  font-size: 13px;
-  font-weight: 600;
-  text-align: center;
-}
-.squeeze .agform-success {
-  padding: 18px;
-  border-radius: 12px;
-  background: rgba(34, 197, 94, 0.12);
-  border: 1px solid rgba(34, 197, 94, 0.35);
-  color: #d1fadf;
-  font-weight: 600;
-  text-align: center;
-}
+
+
 
 .squeeze .for-whom {
   margin-top: 60px;
