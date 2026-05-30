@@ -1,31 +1,26 @@
-# DEPLOYHUB_NGINX_SPA_V16
+# DEPLOYHUB_TANSTACK_SSR_V1
 FROM node:22-alpine AS build
 WORKDIR /app
 COPY . .
-RUN if [ -f package.json ]; then npm install --legacy-peer-deps; else echo "no package.json"; exit 1; fi
-RUN npm run build
+ARG VITE_SUPABASE_URL
+ARG VITE_SUPABASE_ANON_KEY
+ARG VITE_SUPABASE_PUBLISHABLE_KEY
+ENV VITE_SUPABASE_URL=$VITE_SUPABASE_URL
+ENV VITE_SUPABASE_ANON_KEY=$VITE_SUPABASE_ANON_KEY
+ENV VITE_SUPABASE_PUBLISHABLE_KEY=$VITE_SUPABASE_PUBLISHABLE_KEY
+ENV NITRO_PRESET=node-server
+RUN npm install --legacy-peer-deps
+RUN if [ -z "$VITE_SUPABASE_PUBLISHABLE_KEY" ]; then export VITE_SUPABASE_PUBLISHABLE_KEY="$VITE_SUPABASE_ANON_KEY"; fi && NITRO_PRESET=node-server npm run build
+RUN echo "=== build output ===" && ls -la .output 2>/dev/null || true && ls -la .output/server 2>/dev/null || true && ls -la dist 2>/dev/null || true
 
 FROM node:22-alpine AS runtime
 WORKDIR /app
-RUN apk add --no-cache nginx curl ca-certificates &&   mkdir -p /run/nginx /var/log/nginx /usr/share/nginx/html /etc/nginx/http.d /etc/nginx/conf.d
+RUN apk add --no-cache curl
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV HOST=0.0.0.0
+COPY --from=build /app/.output ./.output
 COPY --from=build /app/dist ./dist
-# If build generated dist/client, use it. Otherwise use dist.
-RUN if [ -d dist/client ]; then cp -r dist/client/. /usr/share/nginx/html/; else cp -r dist/. /usr/share/nginx/html/; fi
-
-# Robust Nginx config for port 3000
-RUN printf 'server { \n\
-  listen 3000 default_server; \n\
-  server_name _; \n\
-  root /usr/share/nginx/html; \n\
-  index index.html; \n\
-  location / { \n\
-    try_files $uri $uri/ /index.html; \n\
-  } \n\
-  location = /healthz/live { \n\
-    access_log off; \n\
-    return 200 "ok\\n"; \n\
-  } \n\
-}' > /etc/nginx/http.d/default.conf
-
 EXPOSE 3000
-CMD ["nginx", "-g", "daemon off;"]
+HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 CMD curl -fsS http://localhost:3000/ || exit 1
+CMD sh -c 'if [ -f .output/server/index.mjs ]; then exec node .output/server/index.mjs; else echo "No .output/server/index.mjs"; ls -la .output 2>/dev/null; ls -la dist 2>/dev/null; exit 1; fi'
