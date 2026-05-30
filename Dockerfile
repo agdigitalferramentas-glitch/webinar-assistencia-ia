@@ -1,4 +1,4 @@
-# DEPLOYHUB_NGINX_SPA_V14
+# DEPLOYHUB_NGINX_SPA_V15
 # Dockerfile robusto para Dokploy: Vite/React SPA via Nginx + fallback SSR TanStack/Node, inclusive apps dentro de /client.
 FROM node:22-alpine AS build
 WORKDIR /app
@@ -42,6 +42,21 @@ if is_debug; then
   log "DEPLOYHUB_DEBUG ativo"
   env | sort | sed -E 's/(TOKEN|KEY|SECRET|PASSWORD)=.*/\1=***masked***/I'
   dump_tree
+fi
+
+# Alguns builds TanStack geram /dist/server/server.js como adaptador export-only,
+# não como listener HTTP. Se também houver index.html em dist/client ou dist,
+# sirva primeiro o bundle estático para manter o container vivo atrás do Traefik.
+if [ -f /app/dist/client/index.html ]; then
+  export PORT="${PORT:-3000}"
+  log "SPA estático detectado: servindo /app/dist/client via deployhub-health-server na porta $PORT"
+  exec node /app/deployhub-health-server.mjs /app/dist/client "$PORT"
+fi
+
+if [ -f /app/dist/index.html ]; then
+  export PORT="${PORT:-3000}"
+  log "SPA estático detectado: servindo /app/dist via deployhub-health-server na porta $PORT"
+  exec node /app/deployhub-health-server.mjs /app/dist "$PORT"
 fi
 
 if [ -f /app/.output/server/index.mjs ]; then
