@@ -1,4 +1,4 @@
-# DEPLOYHUB_NGINX_SPA_V16
+# DEPLOYHUB_NGINX_SPA_V19
 # Dockerfile robusto para Dokploy: Vite/React SPA via Nginx + fallback SSR TanStack/Node, inclusive apps dentro de /client.
 FROM node:22-alpine AS build
 WORKDIR /app
@@ -9,7 +9,26 @@ ARG VITE_SUPABASE_PUBLISHABLE_KEY
 ENV VITE_SUPABASE_URL=$VITE_SUPABASE_URL
 ENV VITE_SUPABASE_ANON_KEY=$VITE_SUPABASE_ANON_KEY
 ENV VITE_SUPABASE_PUBLISHABLE_KEY=$VITE_SUPABASE_PUBLISHABLE_KEY
-RUN if [ -f package.json ]; then npm install --legacy-peer-deps; elif [ -f client/package.json ]; then cd client && npm install --legacy-peer-deps; else echo "package.json não encontrado na raiz nem em /client"; exit 1; fi
+# Garante install COM devDependencies (alguns runners definem NODE_ENV=production por padrão).
+ENV NODE_ENV=development
+RUN if [ -f package.json ]; then npm install --legacy-peer-deps --include=dev; elif [ -f client/package.json ]; then cd client && npm install --legacy-peer-deps --include=dev; else echo "package.json não encontrado na raiz nem em /client"; exit 1; fi
+# Safety-net: se houver postcss/tailwind config mas os módulos estiverem ausentes, instala versões PINADAS do v3.
+RUN set -eu; \
+  ROOT=/app; [ -f /app/package.json ] || ROOT=/app/client; \
+  cd "$ROOT"; \
+  # Renomeia config de TS para JS para evitar problemas de parsing no runner se necessário
+  if [ -f tailwind.config.ts ] && [ ! -f tailwind.config.js ]; then \
+    echo "[deployhub:build] convertendo tailwind.config.ts para .js"; \
+    mv tailwind.config.ts tailwind.config.js || true; \
+    sed -i 's/import type.*//g' tailwind.config.js || true; \
+    sed -i 's/satisfies Config//g' tailwind.config.js || true; \
+  fi; \
+  if ls postcss.config.* tailwind.config.* 2>/dev/null | grep -q .; then \
+    if [ ! -d "node_modules/tailwindcss" ]; then \
+      echo "[deployhub:build] safety-net: instalando tailwindcss@3.4.13"; \
+      npm install --no-save --legacy-peer-deps tailwindcss@3.4.13 autoprefixer@10.4.20 postcss@8.4.47 || true; \
+    fi; \
+  fi
 RUN if [ -z "$VITE_SUPABASE_PUBLISHABLE_KEY" ]; then export VITE_SUPABASE_PUBLISHABLE_KEY="$VITE_SUPABASE_ANON_KEY"; fi && if [ -f package.json ]; then npm run build; elif [ -f client/package.json ]; then cd client && npm run build; fi
 # Fallback SPA build: se gerou dist/server mas faltou index.html no client, força um vite build SPA puro
 RUN set -eu;   ROOT=/app; [ -f /app/package.json ] || ROOT=/app/client;   cd "$ROOT";   if [ -d dist/server ] && [ ! -f dist/client/index.html ] && [ ! -f dist/index.html ]; then     echo "[deployhub:build] SSR build sem index.html — rodando vite build SPA de fallback em dist/client";     if [ -f node_modules/.bin/vite ]; then       ./node_modules/.bin/vite build --outDir dist/client --emptyOutDir=false ||       npx --yes vite build --outDir dist/client --emptyOutDir=false || true;     else       npx --yes vite build --outDir dist/client --emptyOutDir=false || true;     fi;   fi;   if [ ! -f dist/client/index.html ] && [ ! -f dist/index.html ]; then     if [ -f index.html ]; then       echo "[deployhub:build] último recurso: copiando index.html da raiz para dist/client";       mkdir -p dist/client; cp index.html dist/client/index.html;     elif [ -f client/index.html ]; then       echo "[deployhub:build] último recurso: copiando client/index.html para dist/client";       mkdir -p dist/client; cp client/index.html dist/client/index.html;     fi;   fi
@@ -242,6 +261,13 @@ server {
     try_files \$uri =404;
     expires 1y;
     add_header Cache-Control "public, immutable";
+  }
+
+  # Ruído comum de scanners procurando CMS/PHP/file managers que não existem neste app.
+  # Sem esta regra, o fallback SPA devolve index.html com 200 para essas rotas falsas.
+  location ~* "(\\.php(?:/|$)|/php/|kcfinder|filemanager|responsive_filemanager|jquery-file-upload|ckeditor|tinymce)" {
+    access_log off;
+    return 404;
   }
 
   location / {
