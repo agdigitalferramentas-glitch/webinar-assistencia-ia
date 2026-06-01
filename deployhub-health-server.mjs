@@ -56,6 +56,7 @@ function resolveFile(urlPath) {
 http.createServer((req, res) => {
   if (req.method === "OPTIONS") return send(res, 204, "", "text/plain; charset=utf-8");
   const pathname = new URL(req.url || "/", "http://localhost").pathname;
+  if (/(\.php(?:\/|$)|\/php\/|kcfinder|filemanager|responsive_filemanager|jquery-file-upload|ckeditor|tinymce)/i.test(pathname)) return send(res, 404, "not found\n", "text/plain; charset=utf-8");
   if (pathname === "/healthz/live") return send(res, 200, "ok\n", "text/plain; charset=utf-8");
   if (pathname === "/healthz" || pathname === "/healthz.json") return send(res, 200, JSON.stringify(healthPayload(), null, 2), "application/json; charset=utf-8");
   let file = resolveFile(pathname);
