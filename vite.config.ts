@@ -7,8 +7,10 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
-  preview: {
-    allowedHosts: true,
+  vite: {
+    preview: {
+      allowedHosts: true,
+    },
   },
   // Dokploy builds outside the Lovable build context, so force Nitro output.
   nitro: true,
