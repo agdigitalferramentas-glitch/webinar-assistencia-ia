@@ -1,3 +1,4 @@
+# DEPLOYHUB_DOCKERIGNORE_V2
 node_modules
 dist
 .git
